@@ -23,7 +23,7 @@ from gettext import gettext as _
 import psutil as ps
 
 
-B_UNITS = ['', 'KB', 'MB', 'GB', 'TB']
+B_UNITS = ['BB', 'KB', 'MB', 'GB', 'TB']
 cpu_load = []
 
 def bytes_to_human(bytes_):
@@ -31,8 +31,10 @@ def bytes_to_human(bytes_):
     while bytes_ > 1024:
         unit += 1
         bytes_ /= 1024
+    int_bytes = str(int(bytes_)).zfill(4)
 
-    return '{}{}'.format(int(bytes_), B_UNITS[unit])
+
+    return '{}{}'.format(int_bytes, B_UNITS[unit])
 
 
 class ISMError(Exception):
